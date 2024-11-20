@@ -83,29 +83,25 @@ const updateCard = async (req, res, next) => {
 
     if (card.user_id.toString() !== req.userId) {
       return res.status(403).json({
-        message: "Only the user created the card can edit the card",
+        message: "Only the user who created the card can edit it",
       });
     }
 
-    //Bonus 1
+    // Bonus: Check if the user is admin and if bizNumber is unique
     if (req.isAdmin) {
       if (req.body.bizNumber && req.body.bizNumber !== card.bizNumber) {
-        const existingCard = await Card.findOne({ bizNumber });
+        const existingCard = await Card.findOne({ bizNumber: req.body.bizNumber });
         if (existingCard) {
           return res.status(400).json({
             message: "bizNumber already exists. Please use a different one.",
           });
         }
       }
-    } else if (card.user_id.toString() !== req.userId) {
-      return res
-        .status(403)
-        .json({ message: "You do not have permission to edit this card" });
     }
 
-    const updatedCard = await Card.findByIdAndUpdate(cardId, updates, {
-      new: true,
-    });
+    // Update the card with the data from req.body
+    const updatedCard = await Card.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
     res.status(200).json(updatedCard);
   } catch (error) {
     res
@@ -114,6 +110,7 @@ const updateCard = async (req, res, next) => {
     next(error);
   }
 };
+
 
 const likeCard = async (req, res, next) => {
   try {

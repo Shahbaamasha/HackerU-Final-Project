@@ -31,7 +31,9 @@ function AllCardsPage() {
   const handleNavigateToUserCards = () => {
     navigate("/user-cards");
   };
-
+  const handleNavigateToAllCards = () => {
+    navigate("/");
+  };
   return (
     <>
       <Box display={"flex"} gap={1}>
@@ -39,12 +41,23 @@ function AllCardsPage() {
           <Button
             variant="contained"
             color="primary"
-            onClick={handleNavigateToUserCards}
+            onClick={handleNavigateToAllCards}
             style={{ marginBottom: "20px" }}
           >
-            My Cards
+            Listed Cards
           </Button>
         )}
+        {user?.isBusiness && (
+  <Button
+    variant="outlined"
+    color="secondary"
+    onClick={handleNavigateToUserCards}
+    style={{ marginBottom: "20px" }}
+  >
+    Liked Cards
+  </Button>
+)}
+
         {user?.isBusiness && (
           <Button
             variant="outlined"

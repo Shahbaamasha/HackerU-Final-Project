@@ -2,8 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap'); /* Import your font */
 
 html, body {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Roboto', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Use Roboto */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  min-height: 100vh; /* Ensure the body takes at least full viewport height */
+  display: flex;
+  flex-direction: column; /* Allow for flexible layout */
+}
+
+.main-content {
+  flex: 1; /* Makes sure content takes available space */
+}
+
+footer {
+  /* Add your footer styles here */
+  margin-top: auto; /* Ensures the footer stays at the bottom */
+  padding: 20px;
+  background-color: #f8f8f8;
 }

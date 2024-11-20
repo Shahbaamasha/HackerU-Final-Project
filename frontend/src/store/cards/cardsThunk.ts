@@ -102,6 +102,30 @@ export const updateCard = createAsyncThunk(
     }
   }
 );
+// Thunk to fetch the cards created by the user
+export const fetchMyCards = createAsyncThunk(
+  "userCards/fetchMyCards",
+  async (userId: string, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${apiUrl}/cards/my-cards`, {
+        params: { userId },  // Pass the userId to the API to filter by user
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      return response.data;
+    } catch (error: any) {
+      enqueueSnackbar(error, { variant: "error" });
+      if (error.response?.status === 401) {
+        dispatch(logout());
+        dispatch(clearCard());
+      }
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch user's cards"
+      );
+    }
+  }
+);
 
 // Thunk to remove a card
 export const deleteCard = createAsyncThunk(
