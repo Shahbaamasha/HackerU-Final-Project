@@ -173,16 +173,6 @@ backend/
 
 ---
 
-## Screenshots
-
-### Login Page
-![Login Page](https://via.placeholder.com/800x400)
-
-### Card Management
-![Card Management](https://via.placeholder.com/800x400)
-
----
-
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
