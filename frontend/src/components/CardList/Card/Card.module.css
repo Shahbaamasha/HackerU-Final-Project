@@ -1,0 +1,15 @@
+@keyframes zoomIn {
+    from {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .card {
+    animation: zoomIn 0.8s ease forwards;
+  }
+  
